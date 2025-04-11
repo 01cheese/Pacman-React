@@ -35,6 +35,9 @@ const Headers = () => {
                 <ul className={`nav-links ${isMenuOpen ? 'open' : ''}`}>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/leaderboard">Leaderboard</Link></li>
+    <li><Link to="/store">Store</Link></li>
+                            <li><Link to="/dashboard">Profile</Link></li>
+                            <li><Link to='https://pacman-eql8.onrender.com/logout'>Logout</Link></li>
 
 
                     {Object.keys(userdata).length > 0 ? (
