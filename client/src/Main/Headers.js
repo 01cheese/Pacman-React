@@ -41,7 +41,7 @@ const Headers = () => {
                         <>
                             <li><Link to="/store">Store</Link></li>
                             <li><Link to="/dashboard">Profile</Link></li>
-                            <li><Link to='https://pacman-eql8.onrender.com/logout'>Logout</Link></li>
+                            <li><a href='https://pacman-eql8.onrender.com/logout'>Logout</a></li>
                         </>
                     ) : (
                         <li><Link to="/login">Login</Link></li>
