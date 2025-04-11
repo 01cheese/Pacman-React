@@ -16,10 +16,6 @@ import Game from "./Game/game/game";
 
 function App() {
     return (
-
-        <BrowserRouter>
-
-
                 <Routes>
                     <Route path="/" element={<Home/>}/>
                     <Route path="/store" element={<Store/>}/>
@@ -30,9 +26,6 @@ function App() {
                     <Route path="/leaderboard" element={<Leaderboard/>}/>
                     <Route path="/game" element={<Game />} />
                 </Routes>
-
-
-        </BrowserRouter>
     );
 }
 
