@@ -263,6 +263,6 @@ app.delete("/user/delete/:id", async (req, res) => {
 });
 
 
-// app.listen(PORT, () => {
-//     console.log(`server start at port no ${PORT}`)
-// })
+app.listen(PORT, () => {
+    console.log(`server start at port no ${PORT}`)
+})
