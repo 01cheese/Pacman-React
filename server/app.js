@@ -21,13 +21,18 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
+app.set('trust proxy', 1);
 
 // setup session
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
-}))
+    saveUninitialized: false,
+    cookie: {
+        secure: true,
+        sameSite: "none"
+    }
+}));
 
 // setuppassport
 app.use(passport.initialize());
