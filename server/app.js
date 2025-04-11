@@ -264,15 +264,6 @@ app.delete("/user/delete/:id", async (req, res) => {
 
 const path = require('path');
 
-// Обов'язково перед app.listen
-app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'), function (err) {
-        if (err) {
-            res.status(500).send(err);
-        }
-    });
-});
-
 app.listen(PORT, () => {
     console.log(`server start at port no ${PORT}`)
 });
