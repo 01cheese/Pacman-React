@@ -9,8 +9,8 @@ const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema")
 
-const clientid = process.env.CLIENT_ID;
-const clientsecret = process.env.CLIENT_SECRET;
+const clientid = process.env.GOOGLE_CLIENT_ID;
+const clientsecret = process.env.GOOGLE_CLIENT_SECRET;
 
 const GitHubStrategy = require("passport-github2").Strategy;
 
