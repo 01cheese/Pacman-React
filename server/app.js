@@ -61,7 +61,7 @@ passport.use(
         {
             clientID: githubClientID,
             clientSecret: githubClientSecret,
-            callbackURL: "http://localhost:6005/auth/github/callback"
+            callbackURL: "https://pacman-eql8.onrender.com/auth/github/callback"
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
