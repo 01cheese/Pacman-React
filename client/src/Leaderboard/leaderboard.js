@@ -18,7 +18,7 @@ const Leaderboard = () => {
     const dataTableInstance = useRef(null);
 
     useEffect(() => {
-        axios.get("http://localhost:6005/leaderboard")
+        axios.get("https://pacman-eql8.onrender.com/leaderboard")
             .then((res) => {
                 const players = res.data.players;
 
