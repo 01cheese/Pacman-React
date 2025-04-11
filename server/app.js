@@ -16,7 +16,7 @@ const GitHubStrategy = require("passport-github2").Strategy;
 
 
 app.use(cors({
-    origin: "http://localhost:3001",
+    origin: "*",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
