@@ -40,7 +40,7 @@ export default function AfterGame({ variables }) {
             <Game player={variables.player} reactRoot={variables.reactRoot} />
         );
       } else {
-        window.location.href = "http://localhost:3001/login";
+        window.location.href = "https://pacman.vzbb.site/login";
       }
     } catch (err) {
       console.error("Error saving score or loading user:", err);
@@ -83,10 +83,10 @@ export default function AfterGame({ variables }) {
         resetVariables();
 
         localStorage.setItem("refreshDashboard", "true");
-        window.location.href = "http://localhost:3001/dashboard"
+        window.location.href = "https://pacman.vzbb.site/dashboard"
 
       } else {
-        window.location.href = "http://localhost:3001/login";
+        window.location.href = "https://pacman.vzbb.site/login";
       }
     } catch (err) {
       console.error("Auth check failed:", err);
