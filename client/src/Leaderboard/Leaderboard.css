@@ -1,0 +1,43 @@
+.dataTables_wrapper {
+    font-family: 'Press Start 2P', cursive;
+    color: #00ffe0;
+    background-color: #000;
+    padding: 20px;
+}
+
+table.dataTable {
+    background-color: #111;
+    border-collapse: collapse;
+}
+
+table.dataTable th,
+table.dataTable td {
+    color: #ffe500;
+    border: 1px solid #444;
+    padding: 10px;
+}
+
+.dataTables_filter input {
+    background: #222;
+    color: #00ffe0;
+    border: 1px solid #555;
+}
+.leaderboard-wrapper {
+    margin-top: 100px;
+    width: 90%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .leaderboard-wrapper {
+        width: 95%;
+    }
+}
+
+.dataTables_wrapper {
+    font-family: 'Press Start 2P', monospace;
+    color: #ffe500;
+    background-color: #000;
+}

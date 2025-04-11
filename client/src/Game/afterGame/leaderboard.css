@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+.leaderboard {
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.leaderboard h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #ffcc00;
+  text-shadow: 2px 2px #000;
+}
+
+.leaderboard h3 {
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: #ffffffcc;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+button {
+  background-color: #ffcc00;
+  border: none;
+  padding: 12px 20px;
+  font-size: 12px;
+  font-family: 'Press Start 2P', sans-serif;
+  cursor: pointer;
+  color: black;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+button:hover {
+  background-color: #ffe066;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}

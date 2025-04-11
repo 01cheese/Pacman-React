@@ -1,0 +1,29 @@
+.error-page {
+    text-align: center;
+    padding-top: 100px;
+    color: rgb(0 0 0 / 80%);
+    height: 100vh;
+    font-family: 'Press Start 2P', cursive;
+    width: 100%;
+
+    --s: 140px; /* control the size */
+
+    --_g: #0000 52%, #170409 /* first color */ 54% 57%, #0000 59%;
+    background: radial-gradient(farthest-side at -33.33% 50%, var(--_g)) 0
+    calc(var(--s) / 2),
+    radial-gradient(farthest-side at 50% 133.33%, var(--_g)) calc(var(--s) / 2)
+    0,
+    radial-gradient(farthest-side at 133.33% 50%, var(--_g)),
+    radial-gradient(farthest-side at 50% -33.33%, var(--_g)), #67917a; /* second color */
+    background-size: calc(var(--s) / 4.667) var(--s),
+    var(--s) calc(var(--s) / 4.667);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-404 {
+    font-size: 20rem;
+    margin-bottom: 20px;
+}
