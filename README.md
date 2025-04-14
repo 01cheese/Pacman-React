@@ -170,7 +170,7 @@ Below is a summary of the main API endpoints available in this backend server.
     ```json
     {
       "score": 150,
-      "userId": "609e129e8673c2b1d8a4f123"
+      "userId": "*********************"
     }
     ```
 
@@ -186,7 +186,7 @@ Below is a summary of the main API endpoints available in this backend server.
     
     ```json
     {
-      "userId": "609e129e8673c2b1d8a4f123",
+      "userId": "************************",
       "newUsername": "CoolUser"
     }
     ```
