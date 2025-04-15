@@ -62,44 +62,48 @@ const githubClientID = process.env.GITHUB_CLIENT_ID;
 const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
 
 passport.use(
-    new GitHubStrategy(
-        {
-            clientID: githubClientID,
-            clientSecret: githubClientSecret,
-            callbackURL: "https://pacman-eql8.onrender.com/auth/github/callback"
-        },
-        async (accessToken, refreshToken, profile, done) => {
-            try {
-                let user = await userdb.findOne({ githubId: profile.id });
+  new GitHubStrategy(
+    {
+      clientID: githubClientID,
+      clientSecret: githubClientSecret,
+      callbackURL: "https://pacman-eql8.onrender.com/auth/github/callback", // исправлено
+    },
+    async (accessToken, refreshToken, profile, done) => {
+      try {
+        let user = await userdb.findOne({ githubId: profile.id });
 
-                if (!user) {
-                    const username = await generateUniqueUsername();
-                    user = new userdb({
-                        githubId: profile.id,
-                        displayName: profile.displayName || profile.username,
-                        email: profile.emails?.[0]?.value || "",
-                        image: profile.photos?.[0]?.value || "",
-                        username: username,
-                    });
-                    await user.save();
-                }
-
-                return done(null, user);
-            } catch (err) {
-                return done(err, null);
-            }
+        if (!user) {
+          const username = await generateUniqueUsername();
+          user = new userdb({
+            githubId: profile.id,
+            displayName: profile.displayName || profile.username,
+            email: profile.emails?.[0]?.value || "",
+            image: profile.photos?.[0]?.value || "",
+            username: username,
+          });
+          await user.save();
         }
-    )
+
+        return done(null, user);
+      } catch (err) {
+        return done(err, null);
+      }
+    }
+  )
 );
 
+
+
+app.get("/auth/github", passport.authenticate("github", { scope: ["user:email"] }));
 
 app.get("/auth/github/callback",
-    passport.authenticate("github", { failureRedirect: "https://pacman.vzbb.site/login" }),
-    (req, res) => {
-        console.log("GitHub login success. User:", req.user);
-        res.redirect("https://pacman.vzbb.site/dashboard");
-    }
+  passport.authenticate("github", { failureRedirect: "https://pacman.vzbb.site/login" }),
+  (req, res) => {
+    console.log("✅ GitHub login success. User:", req.user);
+    res.redirect("https://pacman.vzbb.site/dashboard");
+  }
 );
+
 
 
 app.get("/auth/google/callback",
