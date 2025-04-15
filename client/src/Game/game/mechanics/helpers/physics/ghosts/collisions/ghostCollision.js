@@ -91,7 +91,7 @@ export default class GhostCollision {
     if (reactAppUrl) {
       url = `${reactAppUrl}/save-score`;
     } else {
-      url = "https://pacman-eql8.onrender.com/save-score";
+      url = "https://api-pacman.vzbb.site/save-score";
     }
     return url;
   }
