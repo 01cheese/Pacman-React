@@ -99,20 +99,26 @@ app.get("/auth/github", passport.authenticate("github", { scope: ["user:email"] 
 app.get("/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "https://pacman.vzbb.site/login" }),
   (req, res) => {
-    console.log("✅ GitHub login success. User:", req.user);
-    res.redirect("https://pacman.vzbb.site/dashboard");
+    console.log("GitHub login success. User:", req.user);
+    setTimeout(() => {
+      res.redirect("https://pacman.vzbb.site/dashboard");
+    }, 500);
   }
 );
 
 
 
+
 app.get("/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "https://pacman.vzbb.site/login" }),
-    (req, res) => {
-        console.log("Google login success. User:", req.user);
-        res.redirect("https://pacman.vzbb.site/dashboard");
-    }
+  passport.authenticate("google", { failureRedirect: "https://pacman.vzbb.site/login" }),
+  (req, res) => {
+    console.log("Google login success. User:", req.user);
+    setTimeout(() => {
+      res.redirect("https://pacman.vzbb.site/dashboard");
+    }, 500); //-------------------------------------------------------------------------------
+  }
 );
+
 
 
 
