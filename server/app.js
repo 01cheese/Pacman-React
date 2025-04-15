@@ -116,7 +116,7 @@ passport.use(
     new OAuth2Strategy({
             clientID: clientid,
             clientSecret: clientsecret,
-            callbackURL: "https://pacman.vzbb.site/auth/google/callback",
+            callbackURL: "https://pacman-eql8.onrender.com/auth/google/callback",
             scope: ["profile", "email"]
         },
         async (accessToken, refreshToken, profile, done) => {
