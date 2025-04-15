@@ -77,7 +77,7 @@ passport.use(
         {
             clientID: githubClientID,
             clientSecret: githubClientSecret,
-            callbackURL: "https://pacman-eql8.onrender.com/auth/github/callback"
+            callbackURL: "https://api-pacman.vzbb.site/auth/github/callback"
         },
         async (accessToken, refreshToken, profile, done) => {
             try {
@@ -119,7 +119,7 @@ passport.use(
     new OAuth2Strategy({
             clientID: clientid,
             clientSecret: clientsecret,
-            callbackURL: "https://pacman-eql8.onrender.com/auth/google/callback",
+            callbackURL: "https://api-pacman.vzbb.site/auth/google/callback",
             scope: ["profile", "email"]
         },
         async (accessToken, refreshToken, profile, done) => {
