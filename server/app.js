@@ -34,11 +34,13 @@ app.use(session({
         mongoUrl: process.env.DATABASE,
         collectionName: "sessions",
     }),
-    cookie: {
-        secure: true,
-        sameSite: "none",
-        maxAge: 1000 * 60 * 60 * 24 // 1 день
-    }
+cookie: {
+    secure: true,
+    sameSite: "none",
+    maxAge: 1000 * 60 * 60 * 24,
+    domain: "pacman-eql8.onrender.com" 
+}
+
 }));
 
 
