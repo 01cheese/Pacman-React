@@ -13,7 +13,7 @@ export default function AfterGame({ variables }) {
   const handlePlayAgain = async () => {
     try {
       // user
-      const res = await fetch("https://pacman-eql8.onrender.com/login/sucess", {
+      const res = await fetch("https://api-pacman.vzbb.site/login/sucess", {
         method: "GET",
         credentials: "include"
       });
@@ -22,7 +22,7 @@ export default function AfterGame({ variables }) {
         const data = await res.json();
 
         // save result
-        await fetch("https://pacman-eql8.onrender.com/save-score", {
+        await fetch("https://api-pacman.vzbb.site/save-score", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ export default function AfterGame({ variables }) {
   const handleChangePlayer = async () => {
     try {
       // user
-      const res = await fetch("https://pacman-eql8.onrender.com/login/sucess", {
+      const res = await fetch("https://api-pacman.vzbb.site/login/sucess", {
         method: "GET",
         credentials: "include"
       });
@@ -61,7 +61,7 @@ export default function AfterGame({ variables }) {
         console.log("Logged in as:", data.user);
 
         // save score
-        const saveRes = await fetch("https://pacman-eql8.onrender.com/save-score", {
+        const saveRes = await fetch("https://api-pacman.vzbb.site/save-score", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
