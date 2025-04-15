@@ -24,15 +24,23 @@ app.use(express.json());
 app.set('trust proxy', 1);
 
 // setup session
+const MongoStore = require("connect-mongo");
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.DATABASE,
+        collectionName: "sessions",
+    }),
     cookie: {
         secure: true,
-        sameSite: "none"
+        sameSite: "none",
+        maxAge: 1000 * 60 * 60 * 24 // 1 день
     }
 }));
+
 
 // setuppassport
 app.use(passport.initialize());
