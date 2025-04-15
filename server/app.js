@@ -147,12 +147,18 @@ passport.use(
 )
 
 passport.serializeUser((user, done) => {
-    done(null, user);
-})
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
+    done(null, user._id);
 });
+
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await userdb.findById(id);
+        done(null, user);
+    } catch (err) {
+        done(err, null);
+    }
+});
+
 
 // initial google ouath login
 app.get("/auth/google", passport.authenticate("google", {scope: ["profile", "email"]}));
