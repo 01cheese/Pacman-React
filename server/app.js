@@ -37,8 +37,7 @@ app.use(session({
 cookie: {
     secure: true,
     sameSite: "none",
-    maxAge: 1000 * 60 * 60 * 24,
-    domain: "pacman-eql8.onrender.com" 
+    maxAge: 1000 * 60 * 60 * 24
 }
 
 }));
@@ -173,6 +172,8 @@ app.get("/login/sucess", async (req, res) => {
 })
 
 app.get("/user/info", async (req, res) => {
+    console.log("Session in /user/info:", req.session);
+    console.log("req.user in /user/info:", req.user);
     try {
         if (!req.user) return res.status(401).json({ message: "Unauthorized" });
 
