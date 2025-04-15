@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
     const getUser = async () => {
         try {
-            const res = await axios.get("https://pacman-eql8.onrender.com/login/sucess", {
+            const res = await axios.get("https://api-pacman.vzbb.site/login/sucess", {
                 withCredentials: true,
             });
             setUser(res.data.user);
