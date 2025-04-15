@@ -23,7 +23,7 @@ const Dashboard = ({ reactRoot }) => {
             console.log("[Dashboard] Fresh Data from DB:", data.user.maxScore, data.user.totalScore);
         } catch (error) {
             console.error("Error fetching fresh user:", error);
-            window.location.href = '/login';
+            // window.location.href = '/login';
         }
     };
 
