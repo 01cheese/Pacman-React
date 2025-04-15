@@ -9,10 +9,17 @@ const Headers = () => {
 
     const getUser = async () => {
         try {
-            const response = await axios.get("https://pacman-eql8.onrender.com/login/sucess", { withCredentials: true });
+            const response = await axios.get("https://pacman-eql8.onrender.com/login/sucess", {
+                withCredentials: true
+            });
             setUserdata(response.data.user);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
         } catch (error) {
-            console.log("error", error);
+            console.warn("No session cookie, using localStorage fallback.");
+            const savedUser = JSON.parse(localStorage.getItem("user"));
+            if (savedUser) {
+                setUserdata(savedUser);
+            }
         }
     };
 
@@ -23,7 +30,7 @@ const Headers = () => {
     return (
         <header className="header">
             <nav className="navbar">
-                <h1 className="logo"><a>VZ.</a>PacMan</h1>
+                <h1 className="logo"><a href="/">VZ.</a>PacMan</h1>
 
                 <button
                     className="burger"
@@ -36,11 +43,11 @@ const Headers = () => {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/leaderboard">Leaderboard</Link></li>
 
-                    {Object.keys(userdata).length > 0 ? (
+                    {userdata && userdata.username ? (
                         <>
                             <li><Link to="/store">Store</Link></li>
                             <li><Link to="/dashboard">Profile</Link></li>
-                            <li><Link to='https://pacman-eql8.onrender.com/logout'>Logout</Link></li>
+                            <li><a href='https://pacman-eql8.onrender.com/logout'>Logout</a></li>
                         </>
                     ) : (
                         <li><Link to="/login">Login</Link></li>
