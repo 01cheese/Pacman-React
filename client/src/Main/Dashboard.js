@@ -16,50 +16,19 @@ const Dashboard = ({ reactRoot }) => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'default');
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 
-    // Зчитуємо користувача з URL або localStorage
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
-        const id = params.get("id");
-        const username = params.get("username");
-        const displayName = params.get("displayName");
-        const image = params.get("image");
-
-        if (id && username) {
-            const userData = { id, username, displayName, image };
-            localStorage.setItem("user", JSON.stringify(userData));
-            setUser(userData);
-
-            // Очищаємо URL
-            window.history.replaceState({}, document.title, "/dashboard");
-        } else {
-            const savedUser = JSON.parse(localStorage.getItem("user"));
-            if (savedUser) {
-                setUser(savedUser);
-            } else {
-                window.location.href = "/login";
-            }
-        }
-    }, []);
-
-    // Якщо кука є — оновлюємо дані з бази
     const getUser = async () => {
         try {
-            const { data } = await axios.get('https://pacman-eql8.onrender.com/user/info', {
-                withCredentials: true
-            });
+            const { data } = await axios.get('https://pacman-eql8.onrender.com/user/info', { withCredentials: true });
             setUser(data.user);
-            localStorage.setItem("user", JSON.stringify(data.user));
-            console.log("[Dashboard] Fresh user from DB:", data.user);
+            console.log("[Dashboard] Fresh Data from DB:", data.user.maxScore, data.user.totalScore);
         } catch (error) {
-            console.warn("[Dashboard] Не вдалося оновити з сесії. Ймовірно, кука відсутня.");
+            console.error("Error fetching fresh user:", error);
+            window.location.href = '/login';
         }
     };
 
     useEffect(() => {
-        const savedUser = JSON.parse(localStorage.getItem("user"));
-        if (savedUser) {
-            getUser();
-        }
+        getUser();
     }, []);
 
     useEffect(() => {
@@ -74,17 +43,24 @@ const Dashboard = ({ reactRoot }) => {
     };
 
     const handleSubmit = () => {
-        const root = reactRoot || ReactDOM.createRoot(document.getElementById('subRoot'));
-        root.render(<Game player={user} reactRoot={root} />);
+        if (reactRoot) {
+            reactRoot.render(<Game player={user} reactRoot={reactRoot} />);
+        } else {
+            const root = ReactDOM.createRoot(document.getElementById('subRoot'));
+            root.render(<Game player={user} reactRoot={root} />);
+        }
     };
 
     const handleDeleteAccount = async () => {
         try {
             await axios.delete(`https://pacman-eql8.onrender.com/user/delete/${user._id}`);
+
             localStorage.clear();
             sessionStorage.clear();
-            caches.keys().then((names) => names.forEach((name) => caches.delete(name)));
-            window.location.href = 'https://pacman-eql8.onrender.com/logout';
+            caches.keys().then((names) => {
+                for (let name of names) caches.delete(name);
+            });
+            window.location.href = 'https://pacman-eql8.onrender.com/logout'   // ?????????????
         } catch (error) {
             console.error("Delete error:", error);
             alert("Error deleting account");
@@ -100,7 +76,6 @@ const Dashboard = ({ reactRoot }) => {
             setEditMode(false);
             setUser(response.data.user);
             setErrorMessage('');
-            localStorage.setItem("user", JSON.stringify(response.data.user));
         } catch (error) {
             setErrorMessage(error.response?.data?.message || 'Помилка оновлення імені');
         }
@@ -169,15 +144,7 @@ const Dashboard = ({ reactRoot }) => {
                                     onChange={(e) => setTempUsername(e.target.value)}
                                     placeholder="Your username"
                                 />
-                                {errorMessage && (
-                                    <p className="errorMessage" style={{
-                                        color: 'red',
-                                        fontWeight: 'bold',
-                                        fontSize: '20px'
-                                    }}>
-                                        {errorMessage}
-                                    </p>
-                                )}
+                                {errorMessage && <p className="errorMessage" style={{color: 'red', fontWeight: 'bold', fontSize:'20px'}}>{errorMessage}</p>}
                                 <div className="progress-bar">
                                     <div className="progress" style={{ width: '100%' }}></div>
                                 </div>
