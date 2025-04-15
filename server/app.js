@@ -100,9 +100,19 @@ app.get("/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "https://pacman.vzbb.site/login" }),
   (req, res) => {
     console.log("GitHub login success. User:", req.user);
-    setTimeout(() => {
-      res.redirect("https://pacman.vzbb.site/dashboard");
-    }, 500);
+    const userData = {
+  id: req.user._id,
+  username: req.user.username,
+  displayName: req.user.displayName,
+  image: req.user.image
+};
+
+const query = new URLSearchParams(userData).toString();
+
+setTimeout(() => {
+  res.redirect(`https://pacman.vzbb.site/dashboard?${query}`);
+}, 300);
+
   }
 );
 
@@ -113,9 +123,19 @@ app.get("/auth/google/callback",
   passport.authenticate("google", { failureRedirect: "https://pacman.vzbb.site/login" }),
   (req, res) => {
     console.log("Google login success. User:", req.user);
-    setTimeout(() => {
-      res.redirect("https://pacman.vzbb.site/dashboard");
-    }, 500); //-------------------------------------------------------------------------------
+   const userData = {
+  id: req.user._id,
+  username: req.user.username,
+  displayName: req.user.displayName,
+  image: req.user.image
+};
+
+const query = new URLSearchParams(userData).toString();
+
+setTimeout(() => {
+  res.redirect(`https://pacman.vzbb.site/dashboard?${query}`);
+}, 300);
+
   }
 );
 
