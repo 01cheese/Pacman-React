@@ -6,11 +6,11 @@ import Headers from "./Headers";
 const Login = () => {
 
     const loginwithgoogle = () => {
-        window.open("https://pacman-eql8.onrender.com/auth/google", "_self");
+        window.open("https://api-pacman.vzbb.site/auth/google", "_self");
     };
 
     const loginwithgithub = () => {
-        window.open("https://pacman-eql8.onrender.com/auth/github", "_self");
+        window.open("https://api-pacman.vzbb.site/auth/github", "_self");
     };
 
     return (
