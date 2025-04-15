@@ -147,17 +147,21 @@ passport.use(
 )
 
 passport.serializeUser((user, done) => {
+    console.log("serialize user id:", user._id);
     done(null, user._id);
 });
 
 passport.deserializeUser(async (id, done) => {
     try {
         const user = await userdb.findById(id);
+        console.log("deserialize user from DB:", user?.username);
         done(null, user);
     } catch (err) {
+        console.error("deserialize error:", err);
         done(err, null);
     }
 });
+
 
 
 // initial google ouath login
