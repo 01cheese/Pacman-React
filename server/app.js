@@ -16,7 +16,7 @@ const GitHubStrategy = require("passport-github2").Strategy;
 
 
 app.use(cors({
-    origin: ["https://pacman.vzbb.site"],
+    origin: "https://pacman.vzbb.site",
     methods: "GET,POST,PUT,DELETE",
     credentials: true
 }));
@@ -37,6 +37,7 @@ app.use(session({
 cookie: {
     secure: true,
     sameSite: "none",
+    httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24
 }
 
