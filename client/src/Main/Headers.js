@@ -9,7 +9,7 @@ const Headers = () => {
 
     const getUser = async () => {
         try {
-            const response = await axios.get("https://pacman-eql8.onrender.com/login/sucess", { withCredentials: true });
+            const response = await axios.get("https://api-pacman.vzbb.site/login/sucess", { withCredentials: true });
             setUserdata(response.data.user);
         } catch (error) {
             console.log("error", error);
@@ -40,7 +40,7 @@ const Headers = () => {
                         <>
                             <li><Link to="/store">Store</Link></li>
                             <li><Link to="/dashboard">Profile</Link></li>
-                            <li><Link to='https://pacman-eql8.onrender.com/logout'>Logout</Link></li>
+                            <li><Link to='https://api-pacman.vzbb.site/logout'>Logout</Link></li>
                         </>
                     ) : (
                         <li><Link to="/login">Login</Link></li>
