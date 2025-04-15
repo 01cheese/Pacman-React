@@ -18,7 +18,7 @@ const Dashboard = ({ reactRoot }) => {
 
     const getUser = async () => {
         try {
-            const { data } = await axios.get('https://pacman-eql8.onrender.com/user/info', { withCredentials: true });
+            const { data } = await axios.get('https://api-pacman.vzbb.site/user/info', { withCredentials: true });
             setUser(data.user);
             console.log("[Dashboard] Fresh Data from DB:", data.user.maxScore, data.user.totalScore);
         } catch (error) {
@@ -53,14 +53,14 @@ const Dashboard = ({ reactRoot }) => {
 
     const handleDeleteAccount = async () => {
         try {
-            await axios.delete(`https://pacman-eql8.onrender.com/user/delete/${user._id}`);
+            await axios.delete(`https://api-pacman.vzbb.site/user/delete/${user._id}`);
 
             localStorage.clear();
             sessionStorage.clear();
             caches.keys().then((names) => {
                 for (let name of names) caches.delete(name);
             });
-            window.location.href = 'https://pacman-eql8.onrender.com/logout'   // ?????????????
+            window.location.href = 'https://api-pacman.vzbb.site/logout'   // ?????????????
         } catch (error) {
             console.error("Delete error:", error);
             alert("Error deleting account");
@@ -69,7 +69,7 @@ const Dashboard = ({ reactRoot }) => {
 
     const handleSave = async () => {
         try {
-            const response = await axios.put('https://pacman-eql8.onrender.com/update-username', {
+            const response = await axios.put('https://api-pacman.vzbb.site/update-username', {
                 userId: user._id,
                 newUsername: tempUsername
             });
